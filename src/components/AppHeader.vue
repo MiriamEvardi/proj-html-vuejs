@@ -1,36 +1,118 @@
 <script>
+import ListItem from './ListItem.vue';
+
     export default {
-            name: 'AppHeader'
+        name: 'AppHeader',
+
+        components: {
+            ListItem
+        },
+
+        data() {
+            return {
+                socials: [
+                    'fa-brands fa-facebook-f',
+                    'fa-brands fa-twitter',
+                    'fa-brands fa-instagram',
+                    'fa-brands fa-youtube'
+                ],
+
+                links: [
+                    {
+                        link: 'HOME',
+                        icon: 'fa-solid fa-house-chimney'
+                    },
+                    {
+                        link: 'LIFESTYLE',
+                        icon: 'fa-solid fa-suitcase',
+                        chevron: 'fa-solid fa-chevron-down'
+                    },
+                    {
+                        link: 'STORIES',
+                        icon: 'fa-solid fa-book-open-reader',
+                        chevron: 'fa-solid fa-chevron-down'
+                    },
+                    {
+                        link: 'PAGES',
+                        icon: 'fa-solid fa-book',
+                        chevron: 'fa-solid fa-chevron-down'
+                    },
+                    {
+                        link: 'ABOUT US',
+                        icon: 'fa-solid fa-user'
+                    }
+                ],
+            }
+        }
     }
+
 </script>
 
 <template>
-    <div class="background text-white">
+    <div class="background text-white d-flex justify-content-between">
 
-        <div class="container d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+             <div class="d-flex align-items-center">  
+                <div class="py-2">
+                    <strong class="updates"> NEW UPDATES </strong>
+                </div>
 
-            <div class="py-2">
-                <strong class="updates"> NEW UPDATES </strong>
+                <div class="image">
+                    <img src="/public/img/meal-time-150x150.webp" alt="">
+                </div>
+
+                <div>
+                    <strong class="px-2">05:35</strong>
+                </div>
+            </div> 
+
+
+            <div class="d-flex align-items-center">
+                <div class="pe-5">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+
+                <ul class="d-flex justify-content-between">
+                    <div class="social-container rounded-4 ms-2 mt-3 d-flex justify-content-center align-items-center" v-for="currentSocial in socials">
+                        <ListItem class="icon fs-5" :itemIcon="currentSocial"></ListItem>
+                    </div>
+                </ul>
             </div>
-
-            <div class="image">
-                <img src="/public/img/meal-time-150x150.webp" alt="">
-            </div>
-
-            <div>
-                <strong class="px-2">05:35</strong>
-            </div>
-
         </div>
     </div>
 
-    <div class="container logo-section">
+    <div class="container logo-section d-flex justify-content-between">
+        <div class="my-3 pt-3 logo">
+            <img src="/public/img/anime-logo-300x89.webp" alt="">
+        </div>
 
+        <div class="adv-container mt-4">
+            <img class="adv" src="/public/img/header-banner.webp" alt="">
+        </div>
     </div>
 
     <hr>
-    <div class="container link-section">
 
+    <div class="container link-section d-flex justify-content-between">
+        <div>
+            <i class="fa-solid fa-bars fs-2 text-secondary"></i>
+        </div>
+
+        <ul class="d-flex gap-5 align-items-center">
+            
+            <ListItem class="d-flex align-items-center gap-2" v-for="currentLink in links" 
+                    :itemIcon="currentLink.icon" 
+                    :itemLink="currentLink.link"
+                    :itemChevron="currentLink.chevron">
+                </ListItem>
+        </ul>
+
+        <div>
+            <i class="fa-solid fa-magnifying-glass fs-2 text-secondary"></i>
+        </div>
     </div>
 </template>
 
@@ -66,6 +148,29 @@
 
 .link-section {
     height: 50px;
+}
+
+.social-container {
+    background-color: white;
+
+    width: 28px;
+    height: 28px;
+
+    .icon {
+        color: $primaryColor;
+    }
+}
+
+.adv-container {
+    height: 90px;
+}
+
+img {
+    height: 100%;
+}
+
+hr {
+    color: #9e9e9e;
 }
 
 
