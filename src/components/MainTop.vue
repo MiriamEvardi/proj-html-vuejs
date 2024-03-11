@@ -1,6 +1,28 @@
 <script>
     export default {
-        name: 'MainTop'        
+        name: 'MainTop',
+        
+        data() {
+            return {
+
+                cardsleft: [
+                    {
+                        firstbtn: 'Fashion',
+                        secondbtn: 'Lifestyle',
+                        demo: '<i class="fa-solid fa-user"></i> demo',
+                        date: '<i class="fa-solid fa-calendar-days"></i> December 25, 2022',
+                        title: 'Fashion Trend Now A Days'
+                    },
+                    {
+                        firstbtn: 'Stories',
+                        secondbtn: 'Travel',
+                        demo: '<i class="fa-solid fa-user"></i> demo',
+                        date: '<i class="fa-solid fa-calendar-days"></i> December 26, 2022',
+                        title: 'Traveling Alone Is Awesome'
+                    },
+                ]
+            }
+        }
     }
 </script>
 
