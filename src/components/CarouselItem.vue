@@ -18,13 +18,27 @@ import {store} from '../store.js';
         methods: {
             
             slideNextImage() {
-                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 4;
-                this.$refs.myScrollTarget.scrollLeft += cardWidth;
+                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20) / 4;
+                const scrollTarget = this.$refs.myScrollTarget;
+                const scrollWidth = scrollTarget.scrollWidth;
+                const totalWidth = scrollWidth - scrollTarget.clientWidth;
+
+                if (totalWidth - scrollTarget.scrollLeft < 10) {
+                    scrollTarget.scrollLeft = 0;
+                } else {
+                    scrollTarget.scrollLeft += cardWidth;
+                }
             },
 
             slidePrevImage() {
-                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 4;
-                this.$refs.myScrollTarget.scrollLeft -= cardWidth;
+                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20) / 4;
+                const scrollTarget = this.$refs.myScrollTarget;
+
+                if (scrollTarget.scrollLeft === 0) {
+                    scrollTarget.scrollLeft = scrollTarget.scrollWidth;
+                } else {
+                    scrollTarget.scrollLeft -= cardWidth;
+                }
             },
 
       }
