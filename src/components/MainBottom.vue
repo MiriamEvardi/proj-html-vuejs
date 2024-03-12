@@ -195,6 +195,19 @@ export default {
     overflow-y: auto;
 }
 
+
+.youtube-iframe::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.youtube-iframe::-webkit-scrollbar-track {
+    background-color:#767676;
+}
+
+.youtube-iframe::-webkit-scrollbar-thumb {
+    background-color: #333333;
+}
+
 .youtube-iframe {
     max-height: 470px;
     overflow-y: auto;
