@@ -7,9 +7,6 @@
 </script>
 
 <template>
-    <div class="images-container">
-
-    </div>
 
     <div class="footer-bottom">
         <div class="container">
@@ -20,10 +17,6 @@
 
 <style lang="scss" scoped>
 @use '../variables.scss' as *;
-
-    .images-container {
-        height: 250px;
-    }
 
     .footer-bottom {
         height: 375px;

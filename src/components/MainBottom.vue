@@ -1,12 +1,14 @@
 <script>
-import VideoItem from './VideoItem.vue'
+import VideoItem from './VideoItem.vue';
+import BottomCardItem from './BottomCardItem.vue'
 
 export default {
 
     name: 'MainBottom',
 
     components: {
-        VideoItem
+        VideoItem,
+        BottomCardItem
     },
 
     data() {
@@ -49,6 +51,33 @@ export default {
                 },
                 
 
+            ],
+
+            bottomCards: [
+                {
+                    image: '/img/anime-fashion.webp',
+                    title: 'FASHION'
+                },
+                {
+                    image: '/img/success-story.webp',
+                    title: 'CULTURE'
+                },
+                {
+                    image: '/img/healthy-foods.webp',
+                    title: 'FOOD'
+                },
+                {
+                    image: '/img/visit-france.webp',
+                    title: 'LIFESTYLE'
+                },
+                {
+                    image: '/img/travel-alone.webp',
+                    title: 'STORIES'
+                },
+                {
+                    image: '/img/best-places.webp',
+                    title: 'TRAVEL'
+                }
             ]
         }
     },
@@ -88,7 +117,7 @@ export default {
 
             <!-- Youtube player -->
 
-            <div class="video-container mt-5">
+            <div class="video-container mt-5 mb-3">
                 <div class="d-flex">
                     <section>
                         <iframe width="800" height="550" src="https://www.youtube.com/embed/9KttFNlaooU?si=kS13elsX9BmZUfpe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -116,8 +145,12 @@ export default {
             
         </div>
 
-        <div>
-            
+        <div class="mt-5 pt-3">
+            <div class="d-flex gap-3">
+                <BottomCardItem class="bottom-card" v-for="currentCard in bottomCards"
+                    :imageItem="currentCard.image"
+                    :imageTitle="currentCard.title"></BottomCardItem>
+            </div>
         </div>
     </div>
     
@@ -125,9 +158,6 @@ export default {
 
 
 <style lang="scss" scoped>
-    .section-container {
-        height: 1120px;
-    }
 
 .images {
     width: 100%;
@@ -157,6 +187,11 @@ export default {
 .header-player {
     height: 80px;
     background-color: #333333;
+}
+
+.bottom-card {
+    width: calc(100% / 6);
+    height: 240px;
 }
 
 </style>
