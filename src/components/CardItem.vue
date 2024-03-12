@@ -7,7 +7,9 @@
             buttonItem: String,
             secondButton: String,
             thirdButton: String,
+            itemDemoIcon: String,
             demoItem: String,
+            itemDateIcon: String,
             dateItem: String,
             titleItem: String
         }
@@ -25,12 +27,19 @@
         <div class="image-container">
             <img :src="imageItem" alt="">
         </div>
-        <div class="text-white">
-            <div class="d-flex">
-                <div>{{ demoItem }}</div>
-                <div>{{ dateItem }}</div>
+        <div class="text-white text text-center">
+            <div class="d-flex mx-4">
+                <div class="mx-2">
+                    <i :class="itemDemoIcon"></i>
+                    {{ demoItem }}
+                </div>
+                <div>
+                    <i :class="itemDateIcon"></i>
+                    {{ dateItem }}
+                </div>
+                
             </div>
-            <div>{{ titleItem }}</div>
+            <strong>{{ titleItem }}</strong>
         </div>
     </div>
 </template>
@@ -56,6 +65,12 @@ img {
     transform: translateX(-50%);
     display: flex; 
     z-index: 2;
+}
+
+.text {
+    position: absolute; 
+    bottom: 10px;
+    left: 0;
 }
 
 </style>

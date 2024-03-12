@@ -129,7 +129,7 @@ import CardItem from './CardItem.vue';
                           :thirdButton="currentCard.thirdbtn">
                 </CardItem>
 
-                <div class="bg-white text-center py-3">
+                <div class="bg-white text-center">
                     <strong>{{ currentCard.title }}</strong>
                     <div>{{ currentCard.date }}</div>
                 </div>

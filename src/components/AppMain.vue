@@ -18,9 +18,13 @@ import MainBottom from './MainBottom.vue';
     <CarouselItem></CarouselItem>
     <MainTop></MainTop>
 
-    <div class="adv">
-    
+    <div class="adv d-flex align-items-center">
+        <div class="container ">
+            <img src="/img/page-banner-1.webp" alt="">
+        </div>
     </div>
+
+    <MainBottom></MainBottom>
 
 </template>
 
@@ -30,6 +34,10 @@ import MainBottom from './MainBottom.vue';
     height: 170px;
 
     background-color: #f3f3f3;
+}
+
+img {
+    width: 100%;
 }
 
 </style>
