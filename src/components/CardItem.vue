@@ -11,7 +11,8 @@
             demoItem: String,
             itemDateIcon: String,
             dateItem: String,
-            titleItem: String
+            titleItem: String,
+            isInCarousel: Boolean
         }
     }
 </script>
@@ -25,7 +26,7 @@
             <button v-if="thirdButton">{{ thirdButton }}</button>
         </div>
         <div class="image-container">
-            <img :src="imageItem" alt="">
+            <img :src="imageItem" :style="{ filter: isInCarousel ? 'none' : 'brightness(0.5)' }" alt="">
         </div>
         <div class="text-white text text-center">
             <div class="d-flex mx-4">
@@ -52,7 +53,6 @@ img {
     height: 100%;
     object-fit: cover;
 }
-
 
 .card-container {
     position: relative;

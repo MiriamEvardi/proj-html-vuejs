@@ -101,7 +101,7 @@ export default {
                         <div>
                             <ul class="d-flex flex-column p-0">
                                 <VideoItem class="youtube-iframe" v-for="currentVideo in trailers" 
-                                :key="currentVideo.number"
+                                        :key="currentVideo.number"
                                         :number="currentVideo.number"
                                         :videoUrl="currentVideo.url"
                                         :videoTitle="currentVideo.title"></VideoItem>
@@ -129,8 +129,6 @@ export default {
         height: 1120px;
     }
 
-
-
 .images {
     width: 100%;
     display: flex;
@@ -138,8 +136,8 @@ export default {
 }
 
 .player ul {
-    max-height: 470px; /* Altezza massima consentita */
-    overflow-y: auto; /* Abilita la barra di scorrimento verticale quando necessario */
+    max-height: 470px;
+    overflow-y: auto;
 }
 
 .cards {
@@ -150,10 +148,6 @@ export default {
     strong {
         font-size: 20px;
     }
-}
-
-.youtube-iframe::-webkit-media-controls-start-playback-button {
-  display: none !important;
 }
 
 .player {

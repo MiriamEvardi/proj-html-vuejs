@@ -143,28 +143,44 @@ import CardItem from './CardItem.vue';
 
             <div class="row card-item mt-5">
 
-                <div class="col-7 border">
+                <div class="col-7">
 
                     <img class="image" src="/img/success-story.webp" alt="">
                 </div>
-                <div class="col-5 ps-3 border d-flex flex-column justify-content-center">
+
+
+                <div class="col-5 ps-3 d-flex flex-column justify-content-center">
                     <div>
                         <div class="d-flex">
                             <div class="image-container">
                                 <img class="image" src="/public/img/travel-alone-300x200.webp" alt="">
                             </div>
+                            <div class="d-flex flex-column justify-content-center ps-2">
+                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
+                                <div> {{ cardsleft[1].title }}</div>
+                            </div>
                         </div>
                     
                     <hr>
-                    
-                        <div class="image-container">
-                            <img class="image" src="/public/img/travel-alone-300x200.webp" alt="">
+                        <div class="d-flex">
+                            <div class="image-container">
+                                <img class="image" src="/public/img/best-places-300x200.webp" alt="">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center p-2">
+                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
+                                <div> {{ cardsleft[1].title }}</div>
+                            </div>
                         </div>
                     
                     <hr>
-                    
-                        <div class="image-container">
-                            <img class="image" src="/public/img/travel-alone-300x200.webp" alt="">
+                        <div class="d-flex">
+                            <div class="image-container">
+                                <img class="image" src="/public/img/music-love.webp" alt="">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center ps-2">
+                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
+                                <div> {{ cardsleft[1].title }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,6 +197,7 @@ import CardItem from './CardItem.vue';
         height: 1120px;
     }
 
+
     .cards-container {
         display: flex;
         height: 450px;
@@ -193,14 +210,12 @@ import CardItem from './CardItem.vue';
     }
 
     .card-item {
-        border: 1px solid black;
-        
         height: 450px;
     }
 
     .big-card {
         position: relative;
-        border: 1px solid black;
+
         flex-grow: 2;
         
         width: 100%;
@@ -211,6 +226,8 @@ import CardItem from './CardItem.vue';
     .big-card img {
     width: 100%;
     height: 100%;
+
+    filter: brightness(0.5);
     
     object-fit: cover;
     }

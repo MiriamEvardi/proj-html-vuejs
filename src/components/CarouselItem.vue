@@ -126,7 +126,8 @@ import CardItem from './CardItem.vue';
                 <CardItem :imageItem="currentCard.image"
                           :buttonItem="currentCard.button"
                           :secondButton="currentCard.secondbtn"
-                          :thirdButton="currentCard.thirdbtn">
+                          :thirdButton="currentCard.thirdbtn"
+                          :isInCarousel="true">
                 </CardItem>
 
                 <div class="bg-white text-center">
