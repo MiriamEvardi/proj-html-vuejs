@@ -213,6 +213,10 @@ import CardItem from './CardItem.vue';
         height: 450px;
     }
 
+    .big-card img:hover {
+    opacity: 0.8;
+}
+
     .big-card {
         position: relative;
 

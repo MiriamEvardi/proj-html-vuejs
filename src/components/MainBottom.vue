@@ -1,5 +1,6 @@
 <script>
 import BottomCardItem from './BottomCardItem.vue';
+import CardItem from './CardItem.vue';
 import {store} from '../store.js'
 
 export default {
@@ -7,7 +8,8 @@ export default {
     name: 'MainBottom',
 
     components: {
-        BottomCardItem
+        BottomCardItem,
+        CardItem
     },
 
     data() {
@@ -90,36 +92,61 @@ export default {
             ]
         }
     },
+
+    methods: {
+
+        prevImage() {
+            const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 3;
+                this.$refs.myScrollTarget.scrollLeft -= cardWidth;
+        },
+
+        nextImage() {
+            const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 3;
+            this.$refs.myScrollTarget.scrollLeft += cardWidth;
+        },
+
+    }
 }
    
 </script>
 
 <template>
 
-    <!-- Start 2nd carousel -->
+            <!-- Start 2nd carousel -->
 
-    <div class="section-container mt-5 mb-3">
-        <div class="container">
-            <div class="d-flex justify-content-between">
-                <h2 class="fs-4">FEATURED POSTS</h2>
-                <div class="d-flex gap-2">
-                    <div><i class="fa-solid fa-chevron-left"></i></div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </div>
-            </div>
+            <div class="section-container mt-5 mb-3">
+                <div class="container">
 
-            <div class="pb-3" ref="myScrollTarget">
-    
-                <div class="cards">
-                    <div class="test"></div>
-                    <div class="test"></div>
-                    <div class="test"></div>
-
-                    <div class="bg-white text-center">
-                        
+                    <div class="d-flex justify-content-between">
+                        <h2 class="fs-4">FEATURED POSTS</h2>
+                        <div class="d-flex gap-2 mb-3">
+                            <div class="left text-white d-flex align-items-center justify-content-center" @click="prevImage()"><i class="fa-solid fa-chevron-left"></i></div>
+                            <div class="right text-white d-flex align-items-center justify-content-center" @click="nextImage()"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
                     </div>
-                </div>
-            </div>
+
+                    <div class="carousel-wrapper">
+                        <div class="carousel-container mx-auto pb-3" ref="myScrollTarget">
+                    
+                            <div class="card-item d-flex">
+                                <div class="cards" v-for="currentCard in store.cards" :key="currentCard.key">
+                                    <CardItem :imageItem="currentCard.image"
+                                            :buttonItem="currentCard.button"
+                                            :secondButton="currentCard.secondbtn"
+                                            :thirdButton="currentCard.thirdbtn"
+                                            :isInCarousel="true">
+                                    </CardItem>
+
+                                    <div class="text-center mt-3">
+                                        <strong>{{ currentCard.title }}</strong>
+                                        <div>{{ currentCard.date }}</div>
+                                        <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, mollitia. Eum quo...</p>
+                                        <button>Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -144,6 +171,7 @@ export default {
                                 </div>
                             </div>
                         </div>
+
                         <div class=" youtube-iframe ">
                             <ul class="d-flex flex-column p-0 m-0">
                                 <li class="video d-flex align-items-center" v-for="(trailer, index) in trailers" :key="index" @click="store.activeIndex = index">
@@ -184,10 +212,40 @@ export default {
 
 <style lang="scss" scoped>
 
-.images {
+.carousel-wrapper {
     width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
+}
+
+.carousel-container {
+    height: 446px;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: transparent transparent;
+}
+
+.left,
+.right {
+    width: 36px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #333333;
+}
+
+.card-item {
+    
+    height: 446px;
+    gap: 20px;
+}
+
+.cards {
+    flex: 0 0 calc(100% / 3 - (20px /3) * 2);
+    background-color: #f3f3f3;
+    strong {
+        font-size: 20px;
+    }
 }
 
 .player ul {
@@ -229,16 +287,6 @@ export default {
 
         object-fit: cover;
         
-    }
-}
-
-.cards {
-    flex: 0 0 calc(100% / 3);
-    border: 1px solid black;
-    height: 442px;
-
-    strong {
-        font-size: 20px;
     }
 }
 
