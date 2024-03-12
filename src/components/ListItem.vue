@@ -13,7 +13,7 @@
 <template>
     <li>
         <i :class="itemIcon"></i>
-        <div>{{ itemLink }}</div>
+        <div class="link">{{ itemLink }}</div>
         <i :class="itemChevron"></i>
     </li>
 </template>
@@ -22,5 +22,9 @@
 <style lang="scss" scoped>
     li {
         list-style-type: none;
+    }
+
+    .link {
+        line-height: 30px;
     }
 </style>

@@ -99,14 +99,13 @@ import CardItem from './CardItem.vue';
         methods: {
             
             slideNextImage() {
-                const cardWidth = this.$refs.myScrollTarget.clientWidth / 4;
+                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 4;
                 this.$refs.myScrollTarget.scrollLeft += cardWidth;
             },
 
             slidePrevImage() {
-                const cardWidth = this.$refs.myScrollTarget.clientWidth / 4;
+                const cardWidth = (this.$refs.myScrollTarget.offsetWidth + 20 ) / 4;
                 this.$refs.myScrollTarget.scrollLeft -= cardWidth;
-            
             },
 
       }
@@ -114,25 +113,27 @@ import CardItem from './CardItem.vue';
 </script>
 
 <template>
-    <div class="carousel-container pb-3 pe-3" ref="myScrollTarget">
-        
-        <div class="card-item d-flex gap-2 py-5 px-3">
-            <div class="arrows-wrapper d-flex justify-content-between ">
-                <div @click="slidePrevImage()" class="prev"><i class="fa-solid fa-arrow-left"></i></div>
-                <div @click="slideNextImage()" class="next"> <i class="fa-solid fa-arrow-right"></i> </div>
-            </div>
+    <div class="carousel-wrapper">
+        <div class="carousel-container mx-auto pb-3" ref="myScrollTarget">
+            
+            <div class="card-item d-flex py-5">
+                <div class="arrows-wrapper d-flex justify-content-between ">
+                    <div @click="slidePrevImage()" class="prev"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div @click="slideNextImage()" class="next"> <i class="fa-solid fa-arrow-right"></i> </div>
+                </div>
 
-            <div class="cards" v-for="currentCard in cards">
-                <CardItem :imageItem="currentCard.image"
-                          :buttonItem="currentCard.button"
-                          :secondButton="currentCard.secondbtn"
-                          :thirdButton="currentCard.thirdbtn"
-                          :isInCarousel="true">
-                </CardItem>
+                <div class="cards" v-for="currentCard in cards" :key="currentCard.key">
+                    <CardItem :imageItem="currentCard.image"
+                            :buttonItem="currentCard.button"
+                            :secondButton="currentCard.secondbtn"
+                            :thirdButton="currentCard.thirdbtn"
+                            :isInCarousel="true">
+                    </CardItem>
 
-                <div class="bg-white text-center">
-                    <strong>{{ currentCard.title }}</strong>
-                    <div>{{ currentCard.date }}</div>
+                    <div class="bg-white text-center">
+                        <strong>{{ currentCard.title }}</strong>
+                        <div>{{ currentCard.date }}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,15 +141,25 @@ import CardItem from './CardItem.vue';
 </template>
 
 
-<style lang="scss" >
+<style lang="scss" scoped>
+
+.carousel-wrapper {
+    width: 100%;
+    background-color: #f3f3f3;
+}
+
 .carousel-container {
+    width: 90%;
     scroll-snap-type: x mandatory;
     overflow: hidden;
+    scroll-behavior: smooth;
     scrollbar-width: thin;
     scroll-snap-type: x mandatory;
     scrollbar-color: transparent transparent;
+}
 
-    background-color: #f3f3f3;
+.card-item {
+    gap: 20px;
 }
 
 .images {
@@ -158,7 +169,7 @@ import CardItem from './CardItem.vue';
 }
 
 .cards {
-    flex: 0 0 calc(100% / 4);
+    flex: 0 0 calc(100% / 4 - (20px /4) * 3);
 
     strong {
         font-size: 20px;

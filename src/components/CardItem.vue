@@ -26,7 +26,7 @@
             <button v-if="thirdButton">{{ thirdButton }}</button>
         </div>
         <div class="image-container">
-            <img :src="imageItem" :style="{ filter: isInCarousel ? 'none' : 'brightness(0.5)' }" alt="">
+            <img :src="imageItem" :style="{ filter: isInCarousel ? 'none' : 'brightness(0.5)' }" :class="isInCarousel ? '' : 'hover-opacity'" alt="">
         </div>
         <div class="text-white text text-center">
             <div class="d-flex mx-4">
@@ -52,6 +52,10 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.hover-opacity:hover {
+    opacity: 0.8;
 }
 
 .card-container {

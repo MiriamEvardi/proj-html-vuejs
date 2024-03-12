@@ -1,52 +1,61 @@
 <script>
-import VideoItem from './VideoItem.vue';
-import BottomCardItem from './BottomCardItem.vue'
+import BottomCardItem from './BottomCardItem.vue';
+import {store} from '../store.js'
 
 export default {
 
     name: 'MainBottom',
 
     components: {
-        VideoItem,
         BottomCardItem
     },
 
     data() {
         return {
+
+            store,
+
             trailers: [
                 {
                     number: '1',
-                    url: 'https://www.youtube.com/embed/9KttFNlaooU?si=kS13elsX9BmZUfpe',
+                    preview: '/img/preview-0.png',
+                    url: 'https://www.youtube.com/embed/9KttFNlaooU?si=kS13elsX9BmZUfpe&rel=0',
                     title: 'Overlord Season 4 - Official Trailer'
                 },
                 {
                     number: '2',
-                    url: 'https://www.youtube.com/embed/Q0KAQ7_YNEk?si=iEKQaCtEQcbQZwv4',
+                    preview: '/img/preview-1.webp',
+                    url: 'https://www.youtube.com/embed/Q0KAQ7_YNEk?si=iEKQaCtEQcbQZwv4&rel=0',
                     title: 'Rent A Girlfriend Season 2 - Official Trailer'
                 },
                 {
                     number: '3',
-                    url: 'https://www.youtube.com/embed/3YVeAJ-n4ho?si=Yf8pW9r5aTLE7Vm0',
+                    preview: '/img/preview-2.png',
+                    url: 'https://www.youtube.com/embed/3YVeAJ-n4ho?si=Yf8pW9r5aTLE7Vm0&rel=0',
                     title: 'Uncle From Another World - Official Trailer'
                 },
                 {
                     number: '4',
-                    url: 'https://www.youtube.com/embed/7yy5JCLlpMQ?si=wq9944Bxidle_qPr',
+                    preview: '/img/preview-3.png',
+                    url: 'https://www.youtube.com/embed/7yy5JCLlpMQ?si=wq9944Bxidle_qPr&rel=0',
                     title: 'Prima Doll - Official Trailer'
                 },
                 {
                     number: '5',
-                    url: 'https://www.youtube.com/embed/1T7BFGACOU0?si=QNZ9K0V8n2gY6xhC',
+                    preview: '/img/preview-4.png',
+                    url: 'https://www.youtube.com/embed/1T7BFGACOU0?si=QNZ9K0V8n2gY6xhC&rel=0',
                     title: 'Shoot! Goal To The Future - Official Trailer '
                 },
                 {
                     number: '6',
-                    url: 'https://www.youtube.com/embed/LkqBsJuEids?si=siBLXbNol7kts5MM',
+                    preview: '/img/preview-5.png',
+                    url: 'https://www.youtube.com/embed/LkqBsJuEids?si=siBLXbNol7kts5MM&rel=0',
                     title: 'Classroom Of The Elite II - Official Trailer'
                 },
                 {
                     number: '7',
-                    url: 'https://www.youtube.com/embed/msRZ0SB2xM8?si=c5BKbB33tg7yumfF',
+                    preview: '/img/preview-6.png',
+                    url: 'https://www.youtube.com/embed/msRZ0SB2xM8?si=c5BKbB33tg7yumfF&rel=0',
                     title: 'My Hero Academia Season 7 - Official Trailer'
                 },
                 
@@ -81,7 +90,6 @@ export default {
             ]
         }
     },
-   
 }
    
 </script>
@@ -108,7 +116,7 @@ export default {
                     <div class="test"></div>
 
                     <div class="bg-white text-center">
-                    
+                        
                     </div>
                 </div>
             </div>
@@ -117,23 +125,40 @@ export default {
 
             <!-- Youtube player -->
 
-            <div class="video-container mt-5 mb-3">
+            <div class="mt-5 mb-3">
                 <div class="d-flex">
-                    <section>
-                        <iframe width="800" height="550" src="https://www.youtube.com/embed/9KttFNlaooU?si=kS13elsX9BmZUfpe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                     <section>
+                        <iframe v-if="trailers.length > 0" width="800" height="550" :src="trailers[store.activeIndex].url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </section>
 
                     <div class="player">
-                        <div class="header-player">
-
+                        <div class="header-player text-white d-flex align-items-center">
+                            <i class="fa-solid fa-play fs-2 ms-3"></i>
+                            <div class="ms-3">
+                                <div class="fs-5">
+                                    Video Playlist
+                                </div>
+                                <div>
+                                    {{ store.activeIndex + 1 }} / {{ trailers.length }}
+                                     Videos
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <ul class="d-flex flex-column p-0">
-                                <VideoItem class="youtube-iframe" v-for="currentVideo in trailers" 
-                                        :key="currentVideo.number"
-                                        :number="currentVideo.number"
-                                        :videoUrl="currentVideo.url"
-                                        :videoTitle="currentVideo.title"></VideoItem>
+                        <div class=" youtube-iframe ">
+                            <ul class="d-flex flex-column p-0 m-0">
+                                <li class="video d-flex align-items-center" v-for="(trailer, index) in trailers" :key="index" @click="store.activeIndex = index">
+                                    <div class="num text-center ms-2 px-2">
+                                        {{ trailer.number }}
+                                    </div>
+
+                                    <div class="preview-image ms-2 mx-2">
+                                       <img :src="trailer.preview" alt="">
+                                    </div>
+
+                                    <div class="mx-3">
+                                            {{ trailer.title }}
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                             
@@ -166,8 +191,32 @@ export default {
 }
 
 .player ul {
+    background-color: #f3f3f3;
+    overflow-y: auto;
+}
+
+.youtube-iframe {
     max-height: 470px;
     overflow-y: auto;
+
+    .video {
+    list-style-type: none;
+    height: 90px;
+    border-bottom: 1px solid black;
+    }
+}
+
+.preview-image {
+    width: 90px;
+    height: 64px;
+
+    img {
+        height: 100%;
+        border-radius: 10px;
+
+        object-fit: cover;
+        
+    }
 }
 
 .cards {
@@ -178,6 +227,14 @@ export default {
     strong {
         font-size: 20px;
     }
+}
+
+.num {
+    width: 25px;
+    height: 25px;
+    background-color: #333333;
+    color: white;
+    border-radius: 6px;
 }
 
 .player {
