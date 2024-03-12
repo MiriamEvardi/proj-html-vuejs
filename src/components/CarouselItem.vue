@@ -15,6 +15,10 @@ import {store} from '../store.js';
             }
         },
 
+        mounted() {
+            this.autoplaySlide();
+        },
+
         methods: {
             
             slideNextImage() {
@@ -41,7 +45,11 @@ import {store} from '../store.js';
                 }
             },
 
-      }
+            autoplaySlide() {
+                this.interval = setInterval(() => { this.slideNextImage() }, 5000);
+            },
+
+        }
     }
 </script>
 
@@ -55,7 +63,7 @@ import {store} from '../store.js';
                     <div @click="slideNextImage()" class="next"> <i class="fa-solid fa-arrow-right"></i> </div>
                 </div>
 
-                <div class="cards" v-for="currentCard in store.cards" :key="currentCard.key">
+                <div class="cards bg-white" v-for="currentCard in store.cards" :key="currentCard.key">
                     <CardItem :imageItem="currentCard.image"
                             :buttonItem="currentCard.button"
                             :secondButton="currentCard.secondbtn"
@@ -63,7 +71,7 @@ import {store} from '../store.js';
                             :isInCarousel="true">
                     </CardItem>
 
-                    <div class="bg-white text-center">
+                    <div class="text-center py-3">
                         <strong>{{ currentCard.title }}</strong>
                         <div>{{ currentCard.date }}</div>
                     </div>
@@ -97,6 +105,8 @@ import {store} from '../store.js';
 
 .cards {
     flex: 0 0 calc(100% / 4 - (20px /4) * 3);
+    overflow-y: hidden;
+    border-radius: 10px;
 
     strong {
         font-size: 20px;

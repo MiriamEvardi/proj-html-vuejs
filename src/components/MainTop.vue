@@ -1,5 +1,6 @@
 <script>
 import CardItem from './CardItem.vue';
+import {store} from '../store.js';
 
     export default {
         name: 'MainTop',
@@ -10,6 +11,7 @@ import CardItem from './CardItem.vue';
         
         data() {
             return {
+                store,
 
                 cardsleft: [
                     {
@@ -143,43 +145,64 @@ import CardItem from './CardItem.vue';
 
             <div class="row card-item mt-5">
 
-                <div class="col-7">
+                <div class="col-7 position-relative">
 
-                    <img class="image" src="/img/success-story.webp" alt="">
+                    <img class="image overflow-hidden rounded" src="/img/success-story.webp" alt="">
+                    <div class=" position-absolute bottom-0 left-0 m-4 text-white">
+                                <strong><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ store.cards[6].date }} </strong>
+                                <h4> {{ store.cards[6].title }}</h4>
+                    </div>
+                            <div class="position-absolute top-0 left-0 m-4">
+                                <button >{{ store.cards[6].button }}</button>
+                            </div>
+
                 </div>
 
 
-                <div class="col-5 ps-3 d-flex flex-column justify-content-center">
+                <div class="col-5 ps-3 d-flex flex-column justify-content-center ">
                     <div>
-                        <div class="d-flex">
-                            <div class="image-container">
-                                <img class="image" src="/public/img/travel-alone-300x200.webp" alt="">
+                        <div class="d-flex position-relative">
+
+                            <div class="image-container ">
+                                <img class="image overflow-hidden rounded" src="/public/img/travel-alone-300x200.webp" alt="">
                             </div>
-                            <div class="d-flex flex-column justify-content-center ps-2">
+
+                            <div class=" banner d-flex flex-column justify-content-center ps-2">
                                 <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
-                                <div> {{ cardsleft[1].title }}</div>
+                                <strong> {{ cardsleft[1].title }}</strong>
+                            </div>
+                            <div class="position-absolute top-0 left-0 m-1">
+                                <button>{{ store.cards[6].button }}</button>
                             </div>
                         </div>
                     
-                    <hr>
-                        <div class="d-flex">
+                        <hr>
+
+                        <div class="d-flex position-relative">
                             <div class="image-container">
-                                <img class="image" src="/public/img/best-places-300x200.webp" alt="">
+                                <img class="image overflow-hidden rounded" src="/public/img/best-places-300x200.webp" alt="">
                             </div>
-                            <div class="d-flex flex-column justify-content-center p-2">
-                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
-                                <div> {{ cardsleft[1].title }}</div>
+                            <div class="banner d-flex flex-column justify-content-center p-2">
+                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ bigcard[0].date }} </div>
+                                <strong> {{ bigcard[0].title }}</strong>
+                            </div>
+                            <div class="position-absolute top-0 left-0 m-1">
+                                <button >{{ store.cards[6].button }}</button>
                             </div>
                         </div>
                     
-                    <hr>
-                        <div class="d-flex">
+                        <hr>
+
+                        <div class="d-flex position-relative">
                             <div class="image-container">
-                                <img class="image" src="/public/img/music-love.webp" alt="">
+                                <img class="image overflow-hidden rounded" src="/public/img/music-love.webp" alt="">
                             </div>
-                            <div class="d-flex flex-column justify-content-center ps-2">
-                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
-                                <div> {{ cardsleft[1].title }}</div>
+                            <div class="banner d-flex flex-column justify-content-center ps-2">
+                                <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsright[0].date }} </div>
+                                <strong> {{ cardsright[0].title }}</strong>
+                            </div>
+                            <div class="position-absolute top-0 left-0 m-1">
+                                <button>{{ store.cards[6].button }}</button>
                             </div>
                         </div>
                     </div>
@@ -193,6 +216,8 @@ import CardItem from './CardItem.vue';
 
 
 <style lang="scss" scoped>
+@use '../variables.scss' as *;
+
     .section-container {
         height: 1120px;
     }
@@ -240,6 +265,10 @@ import CardItem from './CardItem.vue';
         position: absolute;
         bottom: 10px;
         left: 25%;
+    }
+
+    .banner {
+        color: #565656;
     }
 
     .buttons {
