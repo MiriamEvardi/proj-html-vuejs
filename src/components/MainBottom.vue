@@ -212,8 +212,8 @@ export default {
             
         </div>
 
-        <div class="mt-5 pt-3">
-            <div class="d-flex gap-3">
+        <div class="mt-5 pt-3 mx-3">
+            <div class="d-flex gap-3 position-relative">
                 <BottomCardItem class="bottom-card" v-for="currentCard in bottomCards"
                     :imageItem="currentCard.image"
                     :imageTitle="currentCard.title"></BottomCardItem>
@@ -301,6 +301,7 @@ export default {
     list-style-type: none;
     height: 90px;
     border-bottom: 1px solid black;
+    cursor: pointer;
     }
 }
 

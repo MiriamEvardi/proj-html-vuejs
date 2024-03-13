@@ -59,8 +59,8 @@ import {store} from '../store.js';
             
             <div class="card-item d-flex py-5">
                 <div class="arrows-wrapper d-flex justify-content-between ">
-                    <div @click="slidePrevImage()" class="prev"><i class="fa-solid fa-arrow-left"></i></div>
-                    <div @click="slideNextImage()" class="next"> <i class="fa-solid fa-arrow-right"></i> </div>
+                    <div @click="slidePrevImage()" class="prev ms-3"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div @click="slideNextImage()" class="next me-3"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
                 <div class="cards bg-white" v-for="currentCard in store.cards" :key="currentCard.key">
@@ -125,7 +125,9 @@ import {store} from '../store.js';
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #ccc;
+    border: solid 1px rgb(189, 189, 189);
+    background: #ffffff;
+    color: red;
     display: flex;
     justify-content: center;
     align-items: center;

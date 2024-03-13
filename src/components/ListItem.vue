@@ -22,6 +22,7 @@
 <style lang="scss" scoped>
     li {
         list-style-type: none;
+        cursor: pointer;
     }
 
     .link {

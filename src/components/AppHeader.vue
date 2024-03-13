@@ -10,11 +10,41 @@ import ListItem from './ListItem.vue';
 
         data() {
             return {
+
+                text: 'THE BEST TIME TO HAVE A MEAL',
+                typedText: '',
+                showUnderscore: true,
+                currentIndex: 0,
+                
+
                 socials: [
                     'fa-brands fa-facebook-f',
                     'fa-brands fa-twitter',
                     'fa-brands fa-instagram',
                     'fa-brands fa-youtube'
+                ],
+
+                updates: [
+                    {
+                        image: '/public/img/meal-time-150x150.webp',
+                        time:'05:35',
+                        text: 'THE BEST TIME TO HAVE A MEAL',
+                    },
+                    {
+                        image: '/img/healthy-foods-150x150.webp',
+                        time:'05:32',
+                        text: 'THE BEST HEALTHY FOODS',
+                    },
+                    {
+                        image: '/img/winter-150x150.webp',
+                        time:'05:29',
+                        text: 'THE BEST WINTER OUTFITS',
+                    },
+                    {
+                        image: '/img/rice-ball-150x150.webp',
+                        time:'05:37',
+                        text: 'HYGENIC RECIPE TO PREPARE RICE',
+                    }
                 ],
 
                 links: [
@@ -43,8 +73,53 @@ import ListItem from './ListItem.vue';
                     }
                 ],
             }
+        },
+
+        mounted() {
+            this.typeWriter();
+        },
+
+        methods: {
+            typeWriter() {
+                let i = 0;
+                const currentUpdate = this.updates[this.currentIndex]; 
+                this.typedText = ''; 
+                const typingInterval = setInterval(() => {
+                    if (i < currentUpdate.text.length) {
+                        this.typedText += currentUpdate.text.charAt(i);
+                    }
+                    i++;
+                    if (i >= currentUpdate.text.length) {
+                        clearInterval(typingInterval);
+                        this.showUnderscore = false; 
+                    }
+                }, 100); 
+            },
+    
+            nextUpdate() {
+                this.currentIndex++;
+                if (this.currentIndex >= this.updates.length) {
+                    this.currentIndex = 0;
+                }
+                this.typedText = '';
+                this.showUnderscore = true;
+                this.typeWriter();
+            },
+
+            prevUpdate() {
+                this.currentIndex--;
+                this.typedText = '';
+                if (this.currentIndex < 0) {
+                    this.currentIndex = this.updates.length - 1;
+                }
+                this.showUnderscore = true;
+                this.typeWriter();
+            }
         }
-    }
+  }
+
+  
+    
 
 </script>
 
@@ -57,21 +132,29 @@ import ListItem from './ListItem.vue';
                     <strong class="updates"> NEW UPDATES </strong>
                 </div>
 
-                <div class="image">
-                    <img src="/public/img/meal-time-150x150.webp" alt="">
-                </div>
+                <div v-for="(currentUpdate, index) in updates" :key="index">
+                    <div class="d-flex align-items-center" v-if="index === currentIndex">
+                        <div class="image" >
+                            <img :src="currentUpdate.image" alt="">
+                        </div>
 
-                <div>
-                    <strong class="px-2">05:35</strong>
+                        <div class="d-flex">
+                            <strong class="px-2">{{ currentUpdate.time }}</strong>
+                            <div id="app">
+                                <span v-if="index === currentIndex" class="typing-text"> {{ typedText }}</span><span class="underscore" v-show="showUnderscore">_</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div> 
+        
 
 
             <div class="d-flex align-items-center ">
-                <div class="pe-3 arrow">
+                <div @click="prevUpdate()" class="pe-3 arrow">
                     <i class="fa-solid fa-chevron-left"></i>
                 </div>
-                <div class="arrow ps-3">
+                <div @click="nextUpdate()" class="arrow ps-3">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
 
@@ -83,6 +166,7 @@ import ListItem from './ListItem.vue';
             </div>
         </div>
     </div>
+   
 
     <div class="container logo-section d-flex justify-content-between">
         <div class="my-3 pt-3 logo">
@@ -149,15 +233,12 @@ import ListItem from './ListItem.vue';
 
 .social:hover {
     background-color: $secondaryColor;
-    color: $secondaryColor;
-}
-
-.icon:hover {
     color: white;
 }
-
+    
 .arrow:hover {
     color: $secondaryColor;
+    cursor: pointer;
 }
 
 .link-section {
@@ -179,6 +260,10 @@ import ListItem from './ListItem.vue';
 .icon {
     color: $primaryColor;
 }
+
+ .icon:hover{
+        color: white;
+    }
 
 .adv-container {
     height: 90px;

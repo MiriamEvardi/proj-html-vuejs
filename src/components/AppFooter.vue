@@ -45,7 +45,7 @@ import ListItem from './ListItem.vue';
             <div class="mt-5 pt-4 d-flex justify-content-between gap-5"> 
                 <ul v-for="(currentLink, index) in links">
                     <h5 > {{ currentLink.title }} </h5>
-                    <ListItem  v-for="(link, linkIndex) in currentLink.link" :key="linkIndex" :itemLink="link"></ListItem>
+                    <ListItem class="links" v-for="(link, linkIndex) in currentLink.link" :key="linkIndex" :itemLink="link"></ListItem>
                 </ul>
 
                 <div>
@@ -111,5 +111,10 @@ import ListItem from './ListItem.vue';
 
     .logo {
         filter: invert(98%) sepia(98%) saturate(9%) hue-rotate(167deg) brightness(104%) contrast(104%);
+    }
+
+    .links:hover {
+        cursor: pointer;
+        color: #545454;
     }
 </style>
