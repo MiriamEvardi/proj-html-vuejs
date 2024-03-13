@@ -137,9 +137,9 @@ import {store} from '../store.js';
             <div class="d-flex justify-content-between">
                 <h2 class="fs-4">LIFESTYLE & STORIES</h2>
                 <div class="d-flex gap-2">
-                    <button> ALL</button>
-                    <button> LIFESTYLE</button>
-                    <button> STORIES</button>
+                    <button class="mainbtn"> ALL</button>
+                    <button class="mainbtn"> LIFESTYLE</button>
+                    <button class="mainbtn"> STORIES</button>
                 </div>
             </div>
 
@@ -171,7 +171,7 @@ import {store} from '../store.js';
                                 <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsleft[1].date }} </div>
                                 <strong> {{ cardsleft[1].title }}</strong>
                             </div>
-                            <div class="position-absolute top-0 left-0 m-1">
+                            <div class="position-absolute top-0 left-0 m-2">
                                 <button>{{ store.cards[6].button }}</button>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ import {store} from '../store.js';
                                 <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ bigcard[0].date }} </div>
                                 <strong> {{ bigcard[0].title }}</strong>
                             </div>
-                            <div class="position-absolute top-0 left-0 m-1">
+                            <div class="position-absolute top-0 left-0 m-2">
                                 <button >{{ store.cards[6].button }}</button>
                             </div>
                         </div>
@@ -201,7 +201,7 @@ import {store} from '../store.js';
                                 <div><i class="fa-solid fa-user"></i> demo <i class="fa-solid fa-calendar-days"></i> {{ cardsright[0].date }} </div>
                                 <strong> {{ cardsright[0].title }}</strong>
                             </div>
-                            <div class="position-absolute top-0 left-0 m-1">
+                            <div class="position-absolute top-0 left-0 m-2">
                                 <button>{{ store.cards[6].button }}</button>
                             </div>
                         </div>
@@ -220,6 +220,15 @@ import {store} from '../store.js';
 
     .section-container {
         height: 1120px;
+    }
+
+    .mainbtn {
+        background-color: $secondaryColor;
+        color: white;
+    }
+
+    .mainbtn:hover {
+        background-color: $primaryColor;;
     }
 
 
@@ -279,6 +288,11 @@ import {store} from '../store.js';
 
     .image {
         height: 100%;
+        filter: brightness(0.5);
+    }
+
+    .image:hover {
+        opacity: 0.8;
     }
 
     .image-container {

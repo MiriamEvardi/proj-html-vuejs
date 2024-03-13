@@ -51,7 +51,7 @@ import ListItem from './ListItem.vue';
                 <div>
                     <h5>SUBSCRIBE TO NEWSLETTER</h5>
                     <input type="email" class="form-control mt-3"placeholder="Email">
-                    <button class="btn mt-3 text-white">SUBSCRIBE</button>
+                    <button class="btn py-2 mt-3">SUBSCRIBE</button>
                 </div>    
 
             </div>
@@ -80,6 +80,18 @@ import ListItem from './ListItem.vue';
         border-top: 8px solid #303433;
         height: 100%;
         background-color: $primaryColor;
+    }
+
+    button {
+        background-color: $secondaryColor;
+        color: white;
+
+        font-weight: 600;
+    }
+
+    button:hover {
+        background-color: white;
+        color: $primaryColor;
     }
 
     .triangle {

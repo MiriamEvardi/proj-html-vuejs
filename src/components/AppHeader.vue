@@ -67,17 +67,17 @@ import ListItem from './ListItem.vue';
             </div> 
 
 
-            <div class="d-flex align-items-center">
-                <div class="pe-5">
+            <div class="d-flex align-items-center ">
+                <div class="pe-3 arrow">
                     <i class="fa-solid fa-chevron-left"></i>
                 </div>
-                <div>
+                <div class="arrow ps-3">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
 
                 <ul class="d-flex justify-content-between">
-                    <div class="social-container rounded-4 ms-2 mt-3 d-flex justify-content-center align-items-center" v-for="currentSocial in socials">
-                        <ListItem class="icon fs-5" :itemIcon="currentSocial"></ListItem>
+                    <div class="social-container rounded-4 ms-2 mt-3 d-flex justify-content-center align-items-center social" v-for="currentSocial in socials">
+                        <ListItem class="icon fs-5 " :itemIcon="currentSocial"></ListItem>
                     </div>
                 </ul>
             </div>
@@ -103,10 +103,11 @@ import ListItem from './ListItem.vue';
 
         <ul class="d-flex gap-5 align-items-center">
             
-            <ListItem class="d-flex align-items-center gap-2" v-for="currentLink in links" 
+            <ListItem class="d-flex align-items-center gap-2 link-hover" v-for="currentLink in links" 
                     :itemIcon="currentLink.icon" 
                     :itemLink="currentLink.link"
-                    :itemChevron="currentLink.chevron">
+                    :itemChevron="currentLink.chevron"
+                    :isLink="true">
                 </ListItem>
         </ul>
 
@@ -146,19 +147,37 @@ import ListItem from './ListItem.vue';
     height: 120px;
 }
 
+.social:hover {
+    background-color: $secondaryColor;
+    color: $secondaryColor;
+}
+
+.icon:hover {
+    color: white;
+}
+
+.arrow:hover {
+    color: $secondaryColor;
+}
+
 .link-section {
     height: 50px;
 }
 
+.link-hover:hover {
+    color: $primaryColor;
+}
+ 
 .social-container {
     background-color: white;
 
     width: 28px;
     height: 28px;
 
-    .icon {
-        color: $primaryColor;
-    }
+}
+
+.icon {
+    color: $primaryColor;
 }
 
 .adv-container {

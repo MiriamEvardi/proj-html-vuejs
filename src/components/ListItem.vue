@@ -12,8 +12,8 @@
 
 <template>
     <li>
-        <i :class="itemIcon"></i>
-        <div class="link">{{ itemLink }}</div>
+        <i :class="itemIcon" ></i>
+        <div>{{ itemLink }}</div>
         <i :class="itemChevron"></i>
     </li>
 </template>

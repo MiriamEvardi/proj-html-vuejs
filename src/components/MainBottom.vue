@@ -143,7 +143,7 @@ export default {
                         <div class="carousel-container mx-auto pb-3" ref="myScrollTarget">
                     
                             <div class="card-item d-flex">
-                                <div class="cards" v-for="currentCard in store.cards" :key="currentCard.key">
+                                <div class="cards pb-3 rounded" v-for="currentCard in store.cards" :key="currentCard.key">
                                     <CardItem :imageItem="currentCard.image"
                                             :buttonItem="currentCard.button"
                                             :secondButton="currentCard.secondbtn"
@@ -151,11 +151,11 @@ export default {
                                             :isInCarousel="true">
                                     </CardItem>
 
-                                    <div class="text-center mt-3">
+                                    <div class="text-center mt-3 ">
                                         <strong>{{ currentCard.title }}</strong>
                                         <div>{{ currentCard.date }}</div>
                                         <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, mollitia. Eum quo...</p>
-                                        <button>Read More</button>
+                                        <button class="more px-5 rounded-5 py-2 text-white">Read More</button>
                                     </div>
                                 </div>
                             </div>
@@ -225,13 +225,13 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../variables.scss' as *;
 
 .carousel-wrapper {
     width: 100%;
 }
 
 .carousel-container {
-    height: 446px;
     scroll-snap-type: x mandatory;
     overflow: hidden;
     scroll-behavior: smooth;
@@ -246,11 +246,16 @@ export default {
     height: 36px;
     border-radius: 20px;
     background-color: #333333;
+
+    cursor: pointer;
+}
+
+.left:hover,
+.right:hover {
+    background-color: $primaryColor;
 }
 
 .card-item {
-    
-    height: 446px;
     gap: 20px;
 }
 
@@ -260,6 +265,14 @@ export default {
     strong {
         font-size: 20px;
     }
+}
+
+.more {
+    background-color: $primaryColor;
+}
+
+.more:hover {
+    background-color: $secondaryColor;
 }
 
 .player ul {
